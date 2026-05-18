@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HorsePedigree-2026</name>
+    </assembly>
+    <members>
+        <member name="T:HorsePedigree_2026.Controllers.HealthController">
+            <summary>
+            Verificación de disponibilidad de la API y conexión a PostgreSQL (Supabase).
+            </summary>
+        </member>
+    </members>
+</doc>
