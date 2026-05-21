@@ -2,6 +2,8 @@ using System.Net;
 using System.Text.Json;
 using HorsePedigree_2026.DTOs.Common;
 using HorsePedigree_2026.Exceptions;
+using Microsoft.EntityFrameworkCore;
+using Npgsql;
 
 namespace HorsePedigree_2026.Middleware;
 
@@ -61,6 +63,11 @@ public class ExceptionHandlingMiddleware
 
     private static (int StatusCode, string Message, string? Detail) MapException(Exception exception)
     {
+        if (exception is DbUpdateException dbUpdate)
+        {
+            return MapDbUpdateException(dbUpdate);
+        }
+
         return exception switch
         {
             NotFoundException notFound => (
@@ -84,5 +91,50 @@ public class ExceptionHandlingMiddleware
                 "Ocurrió un error interno en el servidor.",
                 exception.Message)
         };
+    }
+
+    private static (int StatusCode, string Message, string? Detail) MapDbUpdateException(DbUpdateException exception)
+    {
+        var postgres = FindPostgresException(exception);
+        if (postgres is null)
+        {
+            return (
+                (int)HttpStatusCode.InternalServerError,
+                "Ocurrió un error interno en el servidor.",
+                exception.InnerException?.Message ?? exception.Message);
+        }
+
+        return postgres.SqlState switch
+        {
+            PostgresErrorCodes.UniqueViolation => (
+                (int)HttpStatusCode.BadRequest,
+                "Ya existe un registro con esos datos.",
+                postgres.Detail ?? postgres.MessageText),
+            PostgresErrorCodes.ForeignKeyViolation => (
+                (int)HttpStatusCode.BadRequest,
+                "Una referencia no es válida o no existe.",
+                postgres.MessageText),
+            PostgresErrorCodes.CheckViolation => (
+                (int)HttpStatusCode.BadRequest,
+                "Los datos no cumplen las reglas de la base de datos.",
+                postgres.MessageText),
+            _ => (
+                (int)HttpStatusCode.InternalServerError,
+                "Ocurrió un error al guardar en la base de datos.",
+                postgres.MessageText)
+        };
+    }
+
+    private static PostgresException? FindPostgresException(Exception exception)
+    {
+        for (var current = exception; current is not null; current = current.InnerException)
+        {
+            if (current is PostgresException postgres)
+            {
+                return postgres;
+            }
+        }
+
+        return null;
     }
 }

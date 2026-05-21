@@ -33,7 +33,11 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
 
     public virtual async Task UpdateAsync(TEntity entity, CancellationToken cancellationToken = default)
     {
-        DbSet.Update(entity);
+        if (Context.Entry(entity).State == EntityState.Detached)
+        {
+            DbSet.Update(entity);
+        }
+
         await Context.SaveChangesAsync(cancellationToken);
     }
 

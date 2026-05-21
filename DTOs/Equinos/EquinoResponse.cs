@@ -1,0 +1,29 @@
+namespace HorsePedigree_2026.DTOs.Equinos;
+
+public class EquinoResponse
+{
+    public long EquinoId { get; set; }
+    public string Nombre { get; set; } = string.Empty;
+    public string? TipoDeSangre { get; set; }
+    public long? EstadoId { get; set; }
+    public CatalogoReferenciaDto? Estado { get; set; }
+    public DateTime? FechaDeNacimiento { get; set; }
+    public DateTime? FechaDeFallecimiento { get; set; }
+    public long? CriaderoId { get; set; }
+    public CatalogoReferenciaDto? Criadero { get; set; }
+    public string? Descripcion { get; set; }
+    public string? Sexo { get; set; }
+    public string? ChipId { get; set; }
+    public bool? Capon { get; set; }
+    public bool? Mular { get; set; }
+    public long? TipoDePasoId { get; set; }
+    public CatalogoReferenciaDto? TipoDePaso { get; set; }
+    public long? PropietarioId { get; set; }
+    public PropietarioReferenciaDto? Propietario { get; set; }
+    public long? PadreId { get; set; }
+    public EquinoReferenciaDto? Padre { get; set; }
+    public long? MadreId { get; set; }
+    public EquinoReferenciaDto? Madre { get; set; }
+    public DateTime FechaDeCreacion { get; set; }
+    public DateTime FechaDeActualizacion { get; set; }
+}

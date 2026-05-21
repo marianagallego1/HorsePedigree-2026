@@ -105,7 +105,6 @@ c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\obj\Debug\net8.0\s
 c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\obj\Debug\net8.0\staticwebassets.build.json.cache
 c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\obj\Debug\net8.0\staticwebassets.development.json
 c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\obj\Debug\net8.0\swae.build.ex.cache
 c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\obj\Debug\net8.0\HorsePed.7F4B2510.Up2Date
 c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\obj\Debug\net8.0\HorsePedigree-2026.dll
 c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\obj\Debug\net8.0\refint\HorsePedigree-2026.dll
@@ -113,3 +112,5 @@ c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\obj\Debug\net8.0\H
 c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\obj\Debug\net8.0\HorsePedigree-2026.pdb
 c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\obj\Debug\net8.0\HorsePedigree-2026.genruntimeconfig.cache
 c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\obj\Debug\net8.0\ref\HorsePedigree-2026.dll
+C:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\obj\Debug\net8.0\HorsePedigree-2026.sourcelink.json
+C:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
