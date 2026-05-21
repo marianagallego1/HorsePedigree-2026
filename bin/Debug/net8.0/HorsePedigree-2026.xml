@@ -19,6 +19,11 @@
             Consulta la ficha de un caballo por id.
             </summary>
         </member>
+        <member name="M:HorsePedigree_2026.Controllers.EquinosController.GetGenealogiaAsync(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            Línea genealógica del caballo: padre y madre; abuelos paternos y maternos si están en BD.
+            </summary>
+        </member>
         <member name="M:HorsePedigree_2026.Controllers.EquinosController.UpdateAsync(System.Int64,HorsePedigree_2026.DTOs.Equinos.UpdateEquinoRequest,System.Threading.CancellationToken)">
             <summary>
             Actualiza la información de un caballo.
@@ -64,6 +69,16 @@
         </member>
         <member name="P:HorsePedigree_2026.DTOs.Equinos.EquinoFiltrosQuery.SoloVivos">
             <summary>Si es true, excluye equinos cuyo estado contenga "fallec" en la descripción.</summary>
+        </member>
+        <member name="T:HorsePedigree_2026.DTOs.Equinos.EquinoGenealogiaResponse">
+            <summary>
+            Línea genealógica de un equino: padre y madre, con abuelos cuando están registrados.
+            </summary>
+        </member>
+        <member name="T:HorsePedigree_2026.DTOs.Equinos.EquinoGenealogiaAncestroResponse">
+            <summary>
+            Ancestro directo (padre o madre del equino consultado) y sus padres (abuelos), si existen en BD.
+            </summary>
         </member>
     </members>
 </doc>

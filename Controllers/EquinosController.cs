@@ -63,6 +63,20 @@ public class EquinosController : ControllerBase
     }
 
     /// <summary>
+    /// Línea genealógica del caballo: padre y madre; abuelos paternos y maternos si están en BD.
+    /// </summary>
+    [HttpGet("{id:long}/genealogia")]
+    [ProducesResponseType(typeof(EquinoGenealogiaResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<EquinoGenealogiaResponse>> GetGenealogiaAsync(
+        long id,
+        CancellationToken cancellationToken)
+    {
+        var genealogia = await _equinoService.GetGenealogiaAsync(id, cancellationToken);
+        return Ok(genealogia);
+    }
+
+    /// <summary>
     /// Actualiza la información de un caballo.
     /// </summary>
     [HttpPut("{id:long}")]
