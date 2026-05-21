@@ -93,6 +93,43 @@ public static class EquinoMapper
         };
     }
 
+    public static EquinoGenealogiaResponse ToGenealogia(Equino equino)
+    {
+        return new EquinoGenealogiaResponse
+        {
+            EquinoId = equino.EquinoId,
+            Nombre = equino.Nombre,
+            Padre = ToGenealogiaAncestro(equino.Padre),
+            Madre = ToGenealogiaAncestro(equino.Madre)
+        };
+    }
+
+    private static EquinoGenealogiaAncestroResponse? ToGenealogiaAncestro(Equino? ancestro)
+    {
+        if (ancestro is null)
+        {
+            return null;
+        }
+
+        return new EquinoGenealogiaAncestroResponse
+        {
+            EquinoId = ancestro.EquinoId,
+            Nombre = ancestro.Nombre,
+            Padre = ToReferencia(ancestro.Padre),
+            Madre = ToReferencia(ancestro.Madre)
+        };
+    }
+
+    private static EquinoReferenciaDto? ToReferencia(Equino? equino)
+    {
+        if (equino is null)
+        {
+            return null;
+        }
+
+        return new EquinoReferenciaDto { Id = equino.EquinoId, Nombre = equino.Nombre };
+    }
+
     public static EquinoListItemResponse ToListItem(Equino equino)
     {
         return new EquinoListItemResponse

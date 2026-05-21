@@ -388,6 +388,66 @@
         }
       }
     },
+    "/api/v1/equinos/{id}/genealogia": {
+      "get": {
+        "tags": [
+          "Equinos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EquinoGenealogiaResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EquinoGenealogiaResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EquinoGenealogiaResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/equinos/{id}/estado": {
       "patch": {
         "tags": [
@@ -603,6 +663,46 @@
             "type": "integer",
             "format": "int64",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EquinoGenealogiaAncestroResponse": {
+        "type": "object",
+        "properties": {
+          "equinoId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "padre": {
+            "$ref": "#/components/schemas/EquinoReferenciaDto"
+          },
+          "madre": {
+            "$ref": "#/components/schemas/EquinoReferenciaDto"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EquinoGenealogiaResponse": {
+        "type": "object",
+        "properties": {
+          "equinoId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "padre": {
+            "$ref": "#/components/schemas/EquinoGenealogiaAncestroResponse"
+          },
+          "madre": {
+            "$ref": "#/components/schemas/EquinoGenealogiaAncestroResponse"
           }
         },
         "additionalProperties": false

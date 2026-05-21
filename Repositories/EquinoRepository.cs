@@ -24,6 +24,17 @@ public class EquinoRepository : Repository<Equino>, IEquinoRepository
             .FirstOrDefaultAsync(e => e.EquinoId == id, cancellationToken);
     }
 
+    public async Task<Equino?> GetByIdForGenealogiaAsync(long id, CancellationToken cancellationToken = default)
+    {
+        return await DbSet
+            .AsNoTracking()
+            .Include(e => e.Padre).ThenInclude(p => p!.Padre)
+            .Include(e => e.Padre).ThenInclude(p => p!.Madre)
+            .Include(e => e.Madre).ThenInclude(m => m!.Padre)
+            .Include(e => e.Madre).ThenInclude(m => m!.Madre)
+            .FirstOrDefaultAsync(e => e.EquinoId == id, cancellationToken);
+    }
+
     public async Task<Equino?> GetByIdForUpdateAsync(long id, CancellationToken cancellationToken = default)
     {
         return await DbSet

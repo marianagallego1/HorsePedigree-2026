@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HorsePedigree-2026")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+472fb3ccb46aaf441f2e671fe46e9dd52326a39c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eac64e586711066e108eed99c359e57fcb274b44")]
 [assembly: System.Reflection.AssemblyProductAttribute("HorsePedigree-2026")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HorsePedigree-2026")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

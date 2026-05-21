@@ -52,6 +52,17 @@ public class EquinoService : IEquinoService
         return EquinoMapper.ToResponse(equino);
     }
 
+    public async Task<EquinoGenealogiaResponse> GetGenealogiaAsync(long id, CancellationToken cancellationToken = default)
+    {
+        var equino = await _equinoRepository.GetByIdForGenealogiaAsync(id, cancellationToken);
+        if (equino is null)
+        {
+            throw new NotFoundException(nameof(Equino), id);
+        }
+
+        return EquinoMapper.ToGenealogia(equino);
+    }
+
     public async Task<EquinoResponse> UpdateAsync(long id, UpdateEquinoRequest request, CancellationToken cancellationToken = default)
     {
         var equino = await _equinoRepository.GetByIdForUpdateAsync(id, cancellationToken);
