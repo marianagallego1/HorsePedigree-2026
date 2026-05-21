@@ -4,6 +4,11 @@
         <name>HorsePedigree-2026</name>
     </assembly>
     <members>
+        <member name="M:HorsePedigree_2026.Controllers.EquinosController.GetAllAsync(HorsePedigree_2026.DTOs.Equinos.EquinoFiltrosQuery,System.Threading.CancellationToken)">
+            <summary>
+            Listado de equinos con filtros opcionales por nombre, propietario y estado.
+            </summary>
+        </member>
         <member name="M:HorsePedigree_2026.Controllers.EquinosController.CreateAsync(HorsePedigree_2026.DTOs.Equinos.CreateEquinoRequest,System.Threading.CancellationToken)">
             <summary>
             Registra un nuevo caballo.
@@ -25,6 +30,11 @@
             y el caballo deja de aparecer en listados de vivos (clasificación por estado_id).
             </summary>
         </member>
+        <member name="M:HorsePedigree_2026.Controllers.EquinosController.DeleteAsync(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            Elimina un equino. Solo se permite si no tiene campeonatos ni descendientes registrados.
+            </summary>
+        </member>
         <member name="T:HorsePedigree_2026.Controllers.HealthController">
             <summary>
             Verificación de disponibilidad de la API y conexión a PostgreSQL (Supabase).
@@ -34,6 +44,26 @@
             <summary>
             Opcional. Si el estado es fallecido y no se envía, se usa la fecha actual (UTC).
             </summary>
+        </member>
+        <member name="T:HorsePedigree_2026.DTOs.Equinos.EquinoFiltrosQuery">
+            <summary>
+            Filtros de consulta para el listado de equinos.
+            </summary>
+        </member>
+        <member name="P:HorsePedigree_2026.DTOs.Equinos.EquinoFiltrosQuery.Nombre">
+            <summary>Búsqueda parcial por nombre del equino (insensible a mayúsculas).</summary>
+        </member>
+        <member name="P:HorsePedigree_2026.DTOs.Equinos.EquinoFiltrosQuery.PropietarioId">
+            <summary>Filtrar por id de propietario (dueño).</summary>
+        </member>
+        <member name="P:HorsePedigree_2026.DTOs.Equinos.EquinoFiltrosQuery.Propietario">
+            <summary>Búsqueda parcial por nombre, apellido o alias del propietario.</summary>
+        </member>
+        <member name="P:HorsePedigree_2026.DTOs.Equinos.EquinoFiltrosQuery.EstadoId">
+            <summary>Filtrar por id de estado.</summary>
+        </member>
+        <member name="P:HorsePedigree_2026.DTOs.Equinos.EquinoFiltrosQuery.SoloVivos">
+            <summary>Si es true, excluye equinos cuyo estado contenga "fallec" en la descripción.</summary>
         </member>
     </members>
 </doc>
