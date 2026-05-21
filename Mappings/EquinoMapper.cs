@@ -92,4 +92,24 @@ public static class EquinoMapper
             FechaDeActualizacion = equino.FechaDeActualizacion
         };
     }
+
+    public static EquinoListItemResponse ToListItem(Equino equino)
+    {
+        return new EquinoListItemResponse
+        {
+            EquinoId = equino.EquinoId,
+            Nombre = equino.Nombre,
+            TipoDeSangre = equino.TipoDeSangre,
+            EstadoId = equino.EstadoId,
+            EstadoDescripcion = equino.Estado?.Descripcion,
+            PropietarioId = equino.PropietarioId,
+            PropietarioNombreCompleto = equino.Propietario is null
+                ? null
+                : $"{equino.Propietario.Nombre} {equino.Propietario.Apellido}".Trim(),
+            TipoDePasoId = equino.TipoDePasoId,
+            TipoDePasoDescripcion = equino.TipoDePaso?.Descripcion,
+            FechaDeFallecimiento = equino.FechaDeFallecimiento,
+            FechaDeCreacion = equino.FechaDeCreacion
+        };
+    }
 }

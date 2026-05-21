@@ -16,6 +16,20 @@ public class EquinosController : ControllerBase
     }
 
     /// <summary>
+    /// Listado de equinos con filtros opcionales por nombre, propietario y estado.
+    /// </summary>
+    [HttpGet]
+    [ProducesResponseType(typeof(IReadOnlyList<EquinoListItemResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<IReadOnlyList<EquinoListItemResponse>>> GetAllAsync(
+        [FromQuery] EquinoFiltrosQuery filtros,
+        CancellationToken cancellationToken)
+    {
+        var equinos = await _equinoService.GetAllAsync(filtros, cancellationToken);
+        return Ok(equinos);
+    }
+
+    /// <summary>
     /// Registra un nuevo caballo.
     /// </summary>
     [HttpPost]
@@ -31,13 +45,15 @@ public class EquinosController : ControllerBase
         }
 
         var equino = await _equinoService.CreateAsync(request, cancellationToken);
-        return CreatedAtAction("GetById", new { id = equino.EquinoId }, equino);
+        return CreatedAtRoute(EquinoByIdRoute, new { id = equino.EquinoId }, equino);
     }
+
+    private const string EquinoByIdRoute = nameof(GetByIdAsync);
 
     /// <summary>
     /// Consulta la ficha de un caballo por id.
     /// </summary>
-    [HttpGet("{id:long}")]
+    [HttpGet("{id:long}", Name = EquinoByIdRoute)]
     [ProducesResponseType(typeof(EquinoResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<EquinoResponse>> GetByIdAsync(long id, CancellationToken cancellationToken)
@@ -87,5 +103,18 @@ public class EquinosController : ControllerBase
 
         var equino = await _equinoService.CambiarEstadoAsync(id, request, cancellationToken);
         return Ok(equino);
+    }
+
+    /// <summary>
+    /// Elimina un equino. Solo se permite si no tiene campeonatos ni descendientes registrados.
+    /// </summary>
+    [HttpDelete("{id:long}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteAsync(long id, CancellationToken cancellationToken)
+    {
+        await _equinoService.DeleteAsync(id, cancellationToken);
+        return NoContent();
     }
 }

@@ -121,6 +121,55 @@ public class EquinoService : IEquinoService
         return EquinoMapper.ToResponse(actualizado!);
     }
 
+    public async Task<IReadOnlyList<EquinoListItemResponse>> GetAllAsync(
+        EquinoFiltrosQuery filtros,
+        CancellationToken cancellationToken = default)
+    {
+        if (filtros.PropietarioId.HasValue &&
+            !await _context.Propietarios.AnyAsync(p => p.PropietarioId == filtros.PropietarioId.Value, cancellationToken))
+        {
+            throw new BusinessException($"No existe un propietario con id {filtros.PropietarioId.Value}.");
+        }
+
+        if (filtros.EstadoId.HasValue &&
+            !await _context.Estados.AnyAsync(e => e.EstadoId == filtros.EstadoId.Value, cancellationToken))
+        {
+            throw new BusinessException($"No existe un estado con id {filtros.EstadoId.Value}.");
+        }
+
+        var equinos = await _equinoRepository.BuscarAsync(filtros, cancellationToken);
+        return equinos.Select(EquinoMapper.ToListItem).ToList();
+    }
+
+    public async Task DeleteAsync(long id, CancellationToken cancellationToken = default)
+    {
+        var equino = await _equinoRepository.GetByIdAsync(id, cancellationToken);
+        if (equino is null)
+        {
+            throw new NotFoundException(nameof(Equino), id);
+        }
+
+        var tieneCampeonatos = await _context.EquinoCampeonatos
+            .AnyAsync(ec => ec.EquinoId == id, cancellationToken);
+
+        if (tieneCampeonatos)
+        {
+            throw new BusinessException(
+                "No se puede eliminar el equino porque tiene participaciones registradas en campeonatos.");
+        }
+
+        var esAncestro = await _context.Equinos
+            .AnyAsync(e => e.PadreId == id || e.MadreId == id, cancellationToken);
+
+        if (esAncestro)
+        {
+            throw new BusinessException(
+                "No se puede eliminar el equino porque otros registros lo tienen como padre o madre.");
+        }
+
+        await _equinoRepository.DeleteAsync(equino, cancellationToken);
+    }
+
     private static void AplicarReglasEstado(Equino equino, Estado estado, DateTime? fechaDeFallecimientoSolicitada)
     {
         var nuevoEsFallecido = EquinoEstadoHelper.EsEstadoFallecido(estado.Descripcion);
