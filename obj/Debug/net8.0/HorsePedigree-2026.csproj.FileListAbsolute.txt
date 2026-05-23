@@ -113,4 +113,13 @@ c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\obj\Debug\net8.0\H
 c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\obj\Debug\net8.0\HorsePedigree-2026.genruntimeconfig.cache
 c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\obj\Debug\net8.0\ref\HorsePedigree-2026.dll
 C:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\obj\Debug\net8.0\HorsePedigree-2026.sourcelink.json
+c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\bin\Debug\net8.0\BCrypt.Net-Next.dll
+c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+c:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\maria\UdeA\Proyecto-integrador-II\HorsePedigree-2026\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

@@ -4,6 +4,16 @@
         <name>HorsePedigree-2026</name>
     </assembly>
     <members>
+        <member name="M:HorsePedigree_2026.Controllers.AuthController.LoginAsync(HorsePedigree_2026.DTOs.Auth.LoginRequest,System.Threading.CancellationToken)">
+            <summary>
+            Inicia sesión con username o email y contraseña. Devuelve un token JWT.
+            </summary>
+        </member>
+        <member name="M:HorsePedigree_2026.Controllers.AuthController.GetCurrentUserAsync(System.Threading.CancellationToken)">
+            <summary>
+            Devuelve la información del usuario autenticado según el token JWT enviado.
+            </summary>
+        </member>
         <member name="M:HorsePedigree_2026.Controllers.EquinosController.GetAllAsync(HorsePedigree_2026.DTOs.Equinos.EquinoFiltrosQuery,System.Threading.CancellationToken)">
             <summary>
             Listado de equinos con filtros opcionales por nombre, propietario y estado.
