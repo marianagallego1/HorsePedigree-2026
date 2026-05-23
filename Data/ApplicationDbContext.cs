@@ -43,7 +43,7 @@ public class ApplicationDbContext : DbContext
             e.HasKey(x => x.CampeonatoId);
             e.Property(x => x.CampeonatoId).HasColumnName("campeonato_id").UseIdentityByDefaultColumn();
             e.Property(x => x.Nombre).HasColumnName("nombre");
-            e.Property(x => x.FechaCampeonato).HasColumnName("fecha_campeonato");
+            e.Property(x => x.FechaCampeonato).HasColumnName("fecha_campeonato").HasColumnType("timestamp without time zone");
             e.Property(x => x.Ubicacion).HasColumnName("ubicacion");
             e.Property(x => x.Descripcion).HasColumnName("descripcion");
             e.Property(x => x.Nivel).HasColumnName("nivel");
@@ -97,11 +97,11 @@ public class ApplicationDbContext : DbContext
             e.Property(x => x.Apellido).HasColumnName("apellido");
             e.Property(x => x.Cedula).HasColumnName("cedula");
             e.Property(x => x.Nit).HasColumnName("nit");
-            e.Property(x => x.FechaDeNacimiento).HasColumnName("fecha_de_nacimiento");
+            e.Property(x => x.FechaDeNacimiento).HasColumnName("fecha_de_nacimiento").HasColumnType("timestamp without time zone");
             e.Property(x => x.Telefono).HasColumnName("telefono");
             e.Property(x => x.Email).HasColumnName("email");
             e.Property(x => x.Direccion).HasColumnName("direccion");
-            e.Property(x => x.FechaDeIngreso).HasColumnName("fecha_de_ingreso");
+            e.Property(x => x.FechaDeIngreso).HasColumnName("fecha_de_ingreso").HasColumnType("timestamp without time zone");
         });
     }
 
@@ -133,14 +133,14 @@ public class ApplicationDbContext : DbContext
         {
             e.ToTable("usuario");
             e.HasKey(x => x.UsuarioId);
-            e.Property(x => x.UsuarioId).HasColumnName("usuario_is").UseIdentityByDefaultColumn();
+            e.Property(x => x.UsuarioId).HasColumnName("usuario_id").UseIdentityByDefaultColumn();
             e.Property(x => x.Nombre).HasColumnName("nombre");
             e.Property(x => x.Apellido).HasColumnName("apellido");
             e.Property(x => x.Username).HasColumnName("username");
             e.Property(x => x.Password).HasColumnName("password");
             e.Property(x => x.Email).HasColumnName("email");
             e.Property(x => x.RolId).HasColumnName("rol_id");
-            e.Property(x => x.FechaDeCreacion).HasColumnName("fecha_de_creacion");
+            e.Property(x => x.FechaDeCreacion).HasColumnName("fecha_de_creacion").HasColumnType("date");
             e.HasIndex(x => x.Email).IsUnique();
             e.HasIndex(x => x.Username).IsUnique();
             e.HasOne(x => x.Rol).WithMany(x => x.Usuarios).HasForeignKey(x => x.RolId);
@@ -157,16 +157,16 @@ public class ApplicationDbContext : DbContext
             e.Property(x => x.Nombre).HasColumnName("nombre");
             e.Property(x => x.TipoDeSangre).HasColumnName("tipo_de_sangre");
             e.Property(x => x.EstadoId).HasColumnName("estado_id");
-            e.Property(x => x.FechaDeNacimiento).HasColumnName("fecha_de_nacimiento");
-            e.Property(x => x.FechaDeFallecimiento).HasColumnName("fecha_de_fallecimiento");
+            e.Property(x => x.FechaDeNacimiento).HasColumnName("fecha_de_nacimiento").HasColumnType("date");
+            e.Property(x => x.FechaDeFallecimiento).HasColumnName("fecha_de_fallecimiento").HasColumnType("date");
             e.Property(x => x.CriaderoId).HasColumnName("criadero_id");
             e.Property(x => x.Descripcion).HasColumnName("descripcion");
             e.Property(x => x.Sexo).HasColumnName("sexo");
             e.Property(x => x.ChipId).HasColumnName("chip_id");
             e.Property(x => x.Capon).HasColumnName("capon");
             e.Property(x => x.Mular).HasColumnName("mular");
-            e.Property(x => x.FechaDeCreacion).HasColumnName("fecha_de_creacion");
-            e.Property(x => x.FechaDeActualizacion).HasColumnName("fecha_de_actualizacion");
+            e.Property(x => x.FechaDeCreacion).HasColumnName("fecha_de_creacion").HasColumnType("date");
+            e.Property(x => x.FechaDeActualizacion).HasColumnName("fecha_de_actualizacion").HasColumnType("date");
             e.Property(x => x.TipoDePasoId).HasColumnName("tipo_de_paso_id");
             e.Property(x => x.PropietarioId).HasColumnName("propietario_id");
             e.Property(x => x.PadreId).HasColumnName("padre_id");
@@ -192,7 +192,7 @@ public class ApplicationDbContext : DbContext
             e.Property(x => x.CampeonatoId).HasColumnName("campeonato_id");
             e.Property(x => x.CategoriaId).HasColumnName("categoria_id");
             e.Property(x => x.Resultado).HasColumnName("resultado");
-            e.Property(x => x.Puntaje).HasColumnName("puntaje");
+            e.Property(x => x.Puntaje).HasColumnName("puntaje").HasColumnType("numeric");
             e.Property(x => x.Posicion).HasColumnName("posicion");
 
             e.HasOne(x => x.Equino).WithMany(x => x.EquinoCampeonatos).HasForeignKey(x => x.EquinoId);
@@ -215,17 +215,17 @@ public class ApplicationDbContext : DbContext
 
     private void ApplyEquinoTimestamps()
     {
-        var now = DateTime.UtcNow;
+        var today = DateOnly.FromDateTime(DateTime.UtcNow);
         foreach (var entry in ChangeTracker.Entries<Equino>())
         {
             if (entry.State == EntityState.Added)
             {
-                entry.Entity.FechaDeCreacion = now;
-                entry.Entity.FechaDeActualizacion = now;
+                entry.Entity.FechaDeCreacion = today;
+                entry.Entity.FechaDeActualizacion = today;
             }
             else if (entry.State == EntityState.Modified)
             {
-                entry.Entity.FechaDeActualizacion = now;
+                entry.Entity.FechaDeActualizacion = today;
             }
         }
 
@@ -233,7 +233,7 @@ public class ApplicationDbContext : DbContext
         {
             if (entry.State == EntityState.Added)
             {
-                entry.Entity.FechaDeCreacion = now;
+                entry.Entity.FechaDeCreacion = today;
             }
         }
     }

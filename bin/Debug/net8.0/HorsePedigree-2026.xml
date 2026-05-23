@@ -26,7 +26,8 @@
         </member>
         <member name="M:HorsePedigree_2026.Controllers.EquinosController.UpdateAsync(System.Int64,HorsePedigree_2026.DTOs.Equinos.UpdateEquinoRequest,System.Threading.CancellationToken)">
             <summary>
-            Actualiza la información de un caballo.
+            Actualiza parcialmente la información de un caballo. Solo es necesario enviar
+            los campos que se desean modificar; los omitidos conservan su valor actual.
             </summary>
         </member>
         <member name="M:HorsePedigree_2026.Controllers.EquinosController.CambiarEstadoAsync(System.Int64,HorsePedigree_2026.DTOs.Equinos.CambiarEstadoEquinoRequest,System.Threading.CancellationToken)">

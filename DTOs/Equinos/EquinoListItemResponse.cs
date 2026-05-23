@@ -11,6 +11,6 @@ public class EquinoListItemResponse
     public string? PropietarioNombreCompleto { get; set; }
     public long? TipoDePasoId { get; set; }
     public string? TipoDePasoDescripcion { get; set; }
-    public DateTime? FechaDeFallecimiento { get; set; }
-    public DateTime FechaDeCreacion { get; set; }
+    public DateOnly? FechaDeFallecimiento { get; set; }
+    public DateOnly FechaDeCreacion { get; set; }
 }

@@ -1,25 +1,67 @@
 using System.ComponentModel.DataAnnotations;
+using HorsePedigree_2026.Helpers;
 
 namespace HorsePedigree_2026.DTOs.Equinos;
 
-public class UpdateEquinoRequest
+public class UpdateEquinoRequest : IValidatableObject
 {
-    [Required(ErrorMessage = "El nombre es obligatorio.")]
-    [MaxLength(500)]
-    public string Nombre { get; set; } = string.Empty;
+    public Optional<string> Nombre { get; set; }
 
-    public string? TipoDeSangre { get; set; }
-    public long? EstadoId { get; set; }
-    public DateTime? FechaDeNacimiento { get; set; }
-    public DateTime? FechaDeFallecimiento { get; set; }
-    public long? CriaderoId { get; set; }
-    public string? Descripcion { get; set; }
-    public string? Sexo { get; set; }
-    public string? ChipId { get; set; }
-    public bool? Capon { get; set; }
-    public bool? Mular { get; set; }
-    public long? TipoDePasoId { get; set; }
-    public long? PropietarioId { get; set; }
-    public long? PadreId { get; set; }
-    public long? MadreId { get; set; }
+    public Optional<string?> TipoDeSangre { get; set; }
+    public Optional<long?> EstadoId { get; set; }
+    public Optional<DateOnly?> FechaDeNacimiento { get; set; }
+    public Optional<DateOnly?> FechaDeFallecimiento { get; set; }
+    public Optional<long?> CriaderoId { get; set; }
+    public Optional<string?> Descripcion { get; set; }
+    public Optional<string?> Sexo { get; set; }
+    public Optional<string?> ChipId { get; set; }
+    public Optional<bool?> Capon { get; set; }
+    public Optional<bool?> Mular { get; set; }
+    public Optional<long?> TipoDePasoId { get; set; }
+    public Optional<long?> PropietarioId { get; set; }
+    public Optional<long?> PadreId { get; set; }
+    public Optional<long?> MadreId { get; set; }
+
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+        if (Nombre.HasValue)
+        {
+            if (string.IsNullOrWhiteSpace(Nombre.Value))
+            {
+                yield return new ValidationResult(
+                    "El nombre no puede estar vacío.",
+                    [nameof(Nombre)]);
+            }
+            else if (Nombre.Value!.Length > 500)
+            {
+                yield return new ValidationResult(
+                    "El nombre no puede superar los 500 caracteres.",
+                    [nameof(Nombre)]);
+            }
+        }
+
+        if (!TieneAlMenosUnCampo())
+        {
+            yield return new ValidationResult(
+                "Debe enviar al menos un campo para actualizar.",
+                []);
+        }
+    }
+
+    public bool TieneAlMenosUnCampo() =>
+        Nombre.HasValue ||
+        TipoDeSangre.HasValue ||
+        EstadoId.HasValue ||
+        FechaDeNacimiento.HasValue ||
+        FechaDeFallecimiento.HasValue ||
+        CriaderoId.HasValue ||
+        Descripcion.HasValue ||
+        Sexo.HasValue ||
+        ChipId.HasValue ||
+        Capon.HasValue ||
+        Mular.HasValue ||
+        TipoDePasoId.HasValue ||
+        PropietarioId.HasValue ||
+        PadreId.HasValue ||
+        MadreId.HasValue;
 }
