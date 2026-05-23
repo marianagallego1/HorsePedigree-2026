@@ -7,8 +7,8 @@ public class EquinoResponse
     public string? TipoDeSangre { get; set; }
     public long? EstadoId { get; set; }
     public CatalogoReferenciaDto? Estado { get; set; }
-    public DateTime? FechaDeNacimiento { get; set; }
-    public DateTime? FechaDeFallecimiento { get; set; }
+    public DateOnly? FechaDeNacimiento { get; set; }
+    public DateOnly? FechaDeFallecimiento { get; set; }
     public long? CriaderoId { get; set; }
     public CatalogoReferenciaDto? Criadero { get; set; }
     public string? Descripcion { get; set; }
@@ -24,6 +24,6 @@ public class EquinoResponse
     public EquinoReferenciaDto? Padre { get; set; }
     public long? MadreId { get; set; }
     public EquinoReferenciaDto? Madre { get; set; }
-    public DateTime FechaDeCreacion { get; set; }
-    public DateTime FechaDeActualizacion { get; set; }
+    public DateOnly FechaDeCreacion { get; set; }
+    public DateOnly FechaDeActualizacion { get; set; }
 }

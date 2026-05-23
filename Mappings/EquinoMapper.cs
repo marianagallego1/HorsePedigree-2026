@@ -28,20 +28,75 @@ public static class EquinoMapper
 
     public static void ApplyUpdate(Equino equino, UpdateEquinoRequest request)
     {
-        equino.Nombre = request.Nombre.Trim();
-        equino.TipoDeSangre = request.TipoDeSangre;
-        equino.EstadoId = request.EstadoId;
-        equino.FechaDeNacimiento = request.FechaDeNacimiento;
-        equino.CriaderoId = request.CriaderoId;
-        equino.Descripcion = request.Descripcion;
-        equino.Sexo = request.Sexo;
-        equino.ChipId = request.ChipId;
-        equino.Capon = request.Capon;
-        equino.Mular = request.Mular;
-        equino.TipoDePasoId = request.TipoDePasoId;
-        equino.PropietarioId = request.PropietarioId;
-        equino.PadreId = request.PadreId;
-        equino.MadreId = request.MadreId;
+        if (request.Nombre.HasValue)
+        {
+            equino.Nombre = request.Nombre.Value!.Trim();
+        }
+
+        if (request.TipoDeSangre.HasValue)
+        {
+            equino.TipoDeSangre = request.TipoDeSangre.Value;
+        }
+
+        if (request.EstadoId.HasValue)
+        {
+            equino.EstadoId = request.EstadoId.Value;
+        }
+
+        if (request.FechaDeNacimiento.HasValue)
+        {
+            equino.FechaDeNacimiento = request.FechaDeNacimiento.Value;
+        }
+
+        if (request.CriaderoId.HasValue)
+        {
+            equino.CriaderoId = request.CriaderoId.Value;
+        }
+
+        if (request.Descripcion.HasValue)
+        {
+            equino.Descripcion = request.Descripcion.Value;
+        }
+
+        if (request.Sexo.HasValue)
+        {
+            equino.Sexo = request.Sexo.Value;
+        }
+
+        if (request.ChipId.HasValue)
+        {
+            equino.ChipId = request.ChipId.Value;
+        }
+
+        if (request.Capon.HasValue)
+        {
+            equino.Capon = request.Capon.Value;
+        }
+
+        if (request.Mular.HasValue)
+        {
+            equino.Mular = request.Mular.Value;
+        }
+
+        if (request.TipoDePasoId.HasValue)
+        {
+            equino.TipoDePasoId = request.TipoDePasoId.Value;
+        }
+
+        if (request.PropietarioId.HasValue)
+        {
+            equino.PropietarioId = request.PropietarioId.Value;
+        }
+
+        if (request.PadreId.HasValue)
+        {
+            equino.PadreId = request.PadreId.Value;
+        }
+
+        if (request.MadreId.HasValue)
+        {
+            equino.MadreId = request.MadreId.Value;
+        }
     }
 
     public static EquinoResponse ToResponse(Equino equino)

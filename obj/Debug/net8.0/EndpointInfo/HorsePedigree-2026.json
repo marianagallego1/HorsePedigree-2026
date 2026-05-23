@@ -562,6 +562,20 @@
   },
   "components": {
     "schemas": {
+      "BooleanNullableOptional": {
+        "type": "object",
+        "properties": {
+          "hasValue": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "value": {
+            "type": "boolean",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CambiarEstadoEquinoRequest": {
         "required": [
           "estadoId"
@@ -574,7 +588,7 @@
           },
           "fechaDeFallecimiento": {
             "type": "string",
-            "format": "date-time",
+            "format": "date",
             "nullable": true
           }
         },
@@ -616,7 +630,7 @@
           },
           "fechaDeNacimiento": {
             "type": "string",
-            "format": "date-time",
+            "format": "date",
             "nullable": true
           },
           "criaderoId": {
@@ -662,6 +676,21 @@
           "madreId": {
             "type": "integer",
             "format": "int64",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "DateOnlyNullableOptional": {
+        "type": "object",
+        "properties": {
+          "hasValue": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "value": {
+            "type": "string",
+            "format": "date",
             "nullable": true
           }
         },
@@ -751,12 +780,12 @@
           },
           "fechaDeFallecimiento": {
             "type": "string",
-            "format": "date-time",
+            "format": "date",
             "nullable": true
           },
           "fechaDeCreacion": {
             "type": "string",
-            "format": "date-time"
+            "format": "date"
           }
         },
         "additionalProperties": false
@@ -800,12 +829,12 @@
           },
           "fechaDeNacimiento": {
             "type": "string",
-            "format": "date-time",
+            "format": "date",
             "nullable": true
           },
           "fechaDeFallecimiento": {
             "type": "string",
-            "format": "date-time",
+            "format": "date",
             "nullable": true
           },
           "criaderoId": {
@@ -870,11 +899,26 @@
           },
           "fechaDeCreacion": {
             "type": "string",
-            "format": "date-time"
+            "format": "date"
           },
           "fechaDeActualizacion": {
             "type": "string",
-            "format": "date-time"
+            "format": "date"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Int64NullableOptional": {
+        "type": "object",
+        "properties": {
+          "hasValue": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "value": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -928,80 +972,67 @@
         },
         "additionalProperties": false
       },
+      "StringOptional": {
+        "type": "object",
+        "properties": {
+          "hasValue": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "UpdateEquinoRequest": {
-        "required": [
-          "nombre"
-        ],
         "type": "object",
         "properties": {
           "nombre": {
-            "maxLength": 500,
-            "minLength": 1,
-            "type": "string"
+            "$ref": "#/components/schemas/StringOptional"
           },
           "tipoDeSangre": {
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/StringOptional"
           },
           "estadoId": {
-            "type": "integer",
-            "format": "int64",
-            "nullable": true
+            "$ref": "#/components/schemas/Int64NullableOptional"
           },
           "fechaDeNacimiento": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
+            "$ref": "#/components/schemas/DateOnlyNullableOptional"
           },
           "fechaDeFallecimiento": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
+            "$ref": "#/components/schemas/DateOnlyNullableOptional"
           },
           "criaderoId": {
-            "type": "integer",
-            "format": "int64",
-            "nullable": true
+            "$ref": "#/components/schemas/Int64NullableOptional"
           },
           "descripcion": {
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/StringOptional"
           },
           "sexo": {
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/StringOptional"
           },
           "chipId": {
-            "type": "string",
-            "nullable": true
+            "$ref": "#/components/schemas/StringOptional"
           },
           "capon": {
-            "type": "boolean",
-            "nullable": true
+            "$ref": "#/components/schemas/BooleanNullableOptional"
           },
           "mular": {
-            "type": "boolean",
-            "nullable": true
+            "$ref": "#/components/schemas/BooleanNullableOptional"
           },
           "tipoDePasoId": {
-            "type": "integer",
-            "format": "int64",
-            "nullable": true
+            "$ref": "#/components/schemas/Int64NullableOptional"
           },
           "propietarioId": {
-            "type": "integer",
-            "format": "int64",
-            "nullable": true
+            "$ref": "#/components/schemas/Int64NullableOptional"
           },
           "padreId": {
-            "type": "integer",
-            "format": "int64",
-            "nullable": true
+            "$ref": "#/components/schemas/Int64NullableOptional"
           },
           "madreId": {
-            "type": "integer",
-            "format": "int64",
-            "nullable": true
+            "$ref": "#/components/schemas/Int64NullableOptional"
           }
         },
         "additionalProperties": false

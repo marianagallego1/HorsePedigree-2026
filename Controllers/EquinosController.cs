@@ -77,7 +77,8 @@ public class EquinosController : ControllerBase
     }
 
     /// <summary>
-    /// Actualiza la información de un caballo.
+    /// Actualiza parcialmente la información de un caballo. Solo es necesario enviar
+    /// los campos que se desean modificar; los omitidos conservan su valor actual.
     /// </summary>
     [HttpPut("{id:long}")]
     [ProducesResponseType(typeof(EquinoResponse), StatusCodes.Status200OK)]

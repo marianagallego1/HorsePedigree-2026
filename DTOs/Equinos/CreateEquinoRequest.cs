@@ -10,7 +10,7 @@ public class CreateEquinoRequest
 
     public string? TipoDeSangre { get; set; }
     public long? EstadoId { get; set; }
-    public DateTime? FechaDeNacimiento { get; set; }
+    public DateOnly? FechaDeNacimiento { get; set; }
     public long? CriaderoId { get; set; }
     public string? Descripcion { get; set; }
     public string? Sexo { get; set; }

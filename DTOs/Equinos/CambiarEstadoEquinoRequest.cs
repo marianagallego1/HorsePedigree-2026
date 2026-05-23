@@ -10,5 +10,5 @@ public class CambiarEstadoEquinoRequest
     /// <summary>
     /// Opcional. Si el estado es fallecido y no se envía, se usa la fecha actual (UTC).
     /// </summary>
-    public DateTime? FechaDeFallecimiento { get; set; }
+    public DateOnly? FechaDeFallecimiento { get; set; }
 }

@@ -9,7 +9,7 @@ public class Usuario
     public string Password { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public long RolId { get; set; }
-    public DateTime FechaDeCreacion { get; set; }
+    public DateOnly FechaDeCreacion { get; set; }
 
     public Rol Rol { get; set; } = null!;
 }
