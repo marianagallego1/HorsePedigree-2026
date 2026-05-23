@@ -78,6 +78,10 @@ public class ExceptionHandlingMiddleware
                 (int)HttpStatusCode.BadRequest,
                 business.Message,
                 null),
+            UnauthorizedException unauthorized => (
+                (int)HttpStatusCode.Unauthorized,
+                unauthorized.Message,
+                null),
             ArgumentException argument => (
                 (int)HttpStatusCode.BadRequest,
                 "Solicitud inválida.",

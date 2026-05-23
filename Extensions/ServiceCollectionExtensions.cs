@@ -55,6 +55,8 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IRolService, RolService>();
         services.AddScoped<ITipoDePasoService, TipoDePasoService>();
         services.AddScoped<IUsuarioService, UsuarioService>();
+        services.AddScoped<IAuthService, AuthService>();
+        services.AddSingleton<IJwtTokenService, JwtTokenService>();
         return services;
     }
 }
