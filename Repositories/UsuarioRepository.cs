@@ -31,4 +31,22 @@ public class UsuarioRepository : Repository<Usuario>, IUsuarioRepository
             .Include(x => x.Rol)
             .FirstOrDefaultAsync(x => x.UsuarioId == id, cancellationToken);
     }
+
+    public async Task<bool> ExistsByUsernameAsync(string username, CancellationToken cancellationToken = default)
+    {
+        var normalized = username.Trim().ToLowerInvariant();
+
+        return await DbSet
+            .AsNoTracking()
+            .AnyAsync(x => x.Username.ToLower() == normalized, cancellationToken);
+    }
+
+    public async Task<bool> ExistsByEmailAsync(string email, CancellationToken cancellationToken = default)
+    {
+        var normalized = email.Trim().ToLowerInvariant();
+
+        return await DbSet
+            .AsNoTracking()
+            .AnyAsync(x => x.Email.ToLower() == normalized, cancellationToken);
+    }
 }
