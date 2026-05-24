@@ -1,6 +1,6 @@
-namespace HorsePedigree_2026.Entities;
+namespace HorsePedigree_2026.DTOs.Campeonatos;
 
-public class Campeonato
+public class CampeonatoResponse
 {
     public long CampeonatoId { get; set; }
     public string Nombre { get; set; } = string.Empty;
@@ -8,6 +8,4 @@ public class Campeonato
     public string Ubicacion { get; set; } = string.Empty;
     public string? Descripcion { get; set; }
     public string Nivel { get; set; } = string.Empty;
-
-    public ICollection<EquinoCampeonato> EquinoCampeonatos { get; set; } = new List<EquinoCampeonato>();
 }

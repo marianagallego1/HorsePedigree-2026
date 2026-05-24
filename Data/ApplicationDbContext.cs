@@ -43,7 +43,7 @@ public class ApplicationDbContext : DbContext
             e.HasKey(x => x.CampeonatoId);
             e.Property(x => x.CampeonatoId).HasColumnName("campeonato_id").UseIdentityByDefaultColumn();
             e.Property(x => x.Nombre).HasColumnName("nombre");
-            e.Property(x => x.FechaCampeonato).HasColumnName("fecha_campeonato").HasColumnType("timestamp without time zone");
+            e.Property(x => x.FechaCampeonato).HasColumnName("fecha_campeonato").HasColumnType("date");
             e.Property(x => x.Ubicacion).HasColumnName("ubicacion");
             e.Property(x => x.Descripcion).HasColumnName("descripcion");
             e.Property(x => x.Nivel).HasColumnName("nivel");
@@ -165,6 +165,7 @@ public class ApplicationDbContext : DbContext
             e.Property(x => x.ChipId).HasColumnName("chip_id");
             e.Property(x => x.Capon).HasColumnName("capon");
             e.Property(x => x.Mular).HasColumnName("mular");
+            e.Property(x => x.EnCompetencia).HasColumnName("en_competencia");
             e.Property(x => x.FechaDeCreacion).HasColumnName("fecha_de_creacion").HasColumnType("date");
             e.Property(x => x.FechaDeActualizacion).HasColumnName("fecha_de_actualizacion").HasColumnType("date");
             e.Property(x => x.TipoDePasoId).HasColumnName("tipo_de_paso_id");

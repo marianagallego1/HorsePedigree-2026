@@ -19,6 +19,16 @@
             Cierra la sesión del usuario autenticado invalidando el token JWT actual.
             </summary>
         </member>
+        <member name="M:HorsePedigree_2026.Controllers.CampeonatosController.CreateAsync(HorsePedigree_2026.DTOs.Campeonatos.CreateCampeonatoRequest,System.Threading.CancellationToken)">
+            <summary>
+            Registra un nuevo campeonato.
+            </summary>
+        </member>
+        <member name="M:HorsePedigree_2026.Controllers.CampeonatosController.GetByIdAsync(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            Consulta un campeonato por id.
+            </summary>
+        </member>
         <member name="M:HorsePedigree_2026.Controllers.EquinosController.GetAllAsync(HorsePedigree_2026.DTOs.Equinos.EquinoFiltrosQuery,System.Threading.CancellationToken)">
             <summary>
             Listado de equinos con filtros opcionales por nombre, propietario y estado.

@@ -175,6 +175,175 @@
         }
       }
     },
+    "/api/v1/campeonatos": {
+      "post": {
+        "tags": [
+          "Campeonatos"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCampeonatoRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCampeonatoRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCampeonatoRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CampeonatoResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CampeonatoResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CampeonatoResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/campeonatos/{id}": {
+      "get": {
+        "tags": [
+          "Campeonatos"
+        ],
+        "operationId": "GetCampeonatoById",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CampeonatoResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CampeonatoResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CampeonatoResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/equinos": {
       "get": {
         "tags": [
@@ -383,7 +552,7 @@
         "tags": [
           "Equinos"
         ],
-        "operationId": "GetByIdAsync",
+        "operationId": "GetEquinoById",
         "parameters": [
           {
             "name": "id",
@@ -1047,6 +1216,19 @@
         },
         "additionalProperties": false
       },
+      "BooleanOptional": {
+        "type": "object",
+        "properties": {
+          "hasValue": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "value": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
       "CambiarEstadoEquinoRequest": {
         "required": [
           "estadoId"
@@ -1065,6 +1247,36 @@
         },
         "additionalProperties": false
       },
+      "CampeonatoResponse": {
+        "type": "object",
+        "properties": {
+          "campeonatoId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombre": {
+            "type": "string",
+            "nullable": true
+          },
+          "fechaCampeonato": {
+            "type": "string",
+            "format": "date"
+          },
+          "ubicacion": {
+            "type": "string",
+            "nullable": true
+          },
+          "descripcion": {
+            "type": "string",
+            "nullable": true
+          },
+          "nivel": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "CatalogoReferenciaDto": {
         "type": "object",
         "properties": {
@@ -1075,6 +1287,42 @@
           "descripcion": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateCampeonatoRequest": {
+        "required": [
+          "fechaCampeonato",
+          "nivel",
+          "nombre",
+          "ubicacion"
+        ],
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "maxLength": 500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "fechaCampeonato": {
+            "type": "string",
+            "format": "date"
+          },
+          "ubicacion": {
+            "maxLength": 500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "descripcion": {
+            "maxLength": 2000,
+            "type": "string",
+            "nullable": true
+          },
+          "nivel": {
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -1128,6 +1376,9 @@
           "mular": {
             "type": "boolean",
             "nullable": true
+          },
+          "enCompetencia": {
+            "type": "boolean"
           },
           "tipoDePasoId": {
             "type": "integer",
@@ -1380,6 +1631,9 @@
             "type": "boolean",
             "nullable": true
           },
+          "enCompetencia": {
+            "type": "boolean"
+          },
           "tipoDePasoId": {
             "type": "integer",
             "format": "int64",
@@ -1573,6 +1827,9 @@
           },
           "mular": {
             "$ref": "#/components/schemas/BooleanNullableOptional"
+          },
+          "enCompetencia": {
+            "$ref": "#/components/schemas/BooleanOptional"
           },
           "tipoDePasoId": {
             "$ref": "#/components/schemas/Int64NullableOptional"

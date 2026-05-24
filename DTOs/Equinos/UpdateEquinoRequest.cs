@@ -17,6 +17,7 @@ public class UpdateEquinoRequest : IValidatableObject
     public Optional<string?> ChipId { get; set; }
     public Optional<bool?> Capon { get; set; }
     public Optional<bool?> Mular { get; set; }
+    public Optional<bool> EnCompetencia { get; set; }
     public Optional<long?> TipoDePasoId { get; set; }
     public Optional<long?> PropietarioId { get; set; }
     public Optional<long?> PadreId { get; set; }
@@ -60,6 +61,7 @@ public class UpdateEquinoRequest : IValidatableObject
         ChipId.HasValue ||
         Capon.HasValue ||
         Mular.HasValue ||
+        EnCompetencia.HasValue ||
         TipoDePasoId.HasValue ||
         PropietarioId.HasValue ||
         PadreId.HasValue ||
