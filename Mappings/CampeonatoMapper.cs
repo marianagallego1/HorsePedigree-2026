@@ -31,4 +31,34 @@ public static class CampeonatoMapper
             Nivel = campeonato.Nivel
         };
     }
+
+    public static void ApplyUpdate(Campeonato campeonato, UpdateCampeonatoRequest request)
+    {
+        if (request.Nombre.HasValue)
+        {
+            campeonato.Nombre = request.Nombre.Value!.Trim();
+        }
+
+        if (request.FechaCampeonato.HasValue)
+        {
+            campeonato.FechaCampeonato = request.FechaCampeonato.Value;
+        }
+
+        if (request.Ubicacion.HasValue)
+        {
+            campeonato.Ubicacion = request.Ubicacion.Value!.Trim();
+        }
+
+        if (request.Descripcion.HasValue)
+        {
+            campeonato.Descripcion = string.IsNullOrWhiteSpace(request.Descripcion.Value)
+                ? null
+                : request.Descripcion.Value.Trim();
+        }
+
+        if (request.Nivel.HasValue)
+        {
+            campeonato.Nivel = request.Nivel.Value!.Trim();
+        }
+    }
 }

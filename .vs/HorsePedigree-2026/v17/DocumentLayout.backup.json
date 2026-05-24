@@ -1,12 +1,37 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\maria\\UdeA\\Proyecto-integrador-II\\HorsePedigree-2026\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8F38A998-29C1-43F4-88F8-42C4CB29E07E}|HorsePedigree-2026.csproj|c:\\users\\maria\\udea\\proyecto-integrador-ii\\horsepedigree-2026\\dtos\\campeonatos\\updatecampeonatorequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F38A998-29C1-43F4-88F8-42C4CB29E07E}|HorsePedigree-2026.csproj|solutionrelative:dtos\\campeonatos\\updatecampeonatorequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UpdateCampeonatoRequest.cs",
+              "DocumentMoniker": "C:\\Users\\maria\\UdeA\\Proyecto-integrador-II\\HorsePedigree-2026\\DTOs\\Campeonatos\\UpdateCampeonatoRequest.cs",
+              "RelativeDocumentMoniker": "DTOs\\Campeonatos\\UpdateCampeonatoRequest.cs",
+              "ToolTip": "C:\\Users\\maria\\UdeA\\Proyecto-integrador-II\\HorsePedigree-2026\\DTOs\\Campeonatos\\UpdateCampeonatoRequest.cs",
+              "RelativeToolTip": "DTOs\\Campeonatos\\UpdateCampeonatoRequest.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-24T06:07:07.819Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

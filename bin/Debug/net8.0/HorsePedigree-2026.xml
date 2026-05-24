@@ -29,6 +29,17 @@
             Consulta un campeonato por id.
             </summary>
         </member>
+        <member name="M:HorsePedigree_2026.Controllers.CampeonatosController.UpdateAsync(System.Int64,HorsePedigree_2026.DTOs.Campeonatos.UpdateCampeonatoRequest,System.Threading.CancellationToken)">
+            <summary>
+            Actualiza parcialmente un campeonato. Solo es necesario enviar
+            los campos que se desean modificar; los omitidos conservan su valor actual.
+            </summary>
+        </member>
+        <member name="M:HorsePedigree_2026.Controllers.CampeonatosController.DeleteAsync(System.Int64,System.Threading.CancellationToken)">
+            <summary>
+            Elimina un campeonato. Solo se permite si no tiene participaciones de equinos registradas.
+            </summary>
+        </member>
         <member name="M:HorsePedigree_2026.Controllers.EquinosController.GetAllAsync(HorsePedigree_2026.DTOs.Equinos.EquinoFiltrosQuery,System.Threading.CancellationToken)">
             <summary>
             Listado de equinos con filtros opcionales por nombre, propietario y estado.

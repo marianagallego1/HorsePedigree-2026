@@ -52,4 +52,45 @@ public class CampeonatosController : ControllerBase
         var campeonato = await _campeonatoService.GetDetalleAsync(id, cancellationToken);
         return Ok(campeonato);
     }
+
+    /// <summary>
+    /// Actualiza parcialmente un campeonato. Solo es necesario enviar
+    /// los campos que se desean modificar; los omitidos conservan su valor actual.
+    /// </summary>
+    [HttpPut("{id:long}")]
+    [Authorize(Policy = AuthPolicies.Administrador)]
+    [ProducesResponseType(typeof(CampeonatoResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<CampeonatoResponse>> UpdateAsync(
+        long id,
+        [FromBody] UpdateCampeonatoRequest request,
+        CancellationToken cancellationToken)
+    {
+        if (!ModelState.IsValid)
+        {
+            return ValidationProblem(ModelState);
+        }
+
+        var campeonato = await _campeonatoService.UpdateAsync(id, request, cancellationToken);
+        return Ok(campeonato);
+    }
+
+    /// <summary>
+    /// Elimina un campeonato. Solo se permite si no tiene participaciones de equinos registradas.
+    /// </summary>
+    [HttpDelete("{id:long}")]
+    [Authorize(Policy = AuthPolicies.Administrador)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteAsync(long id, CancellationToken cancellationToken)
+    {
+        await _campeonatoService.DeleteAsync(id, cancellationToken);
+        return NoContent();
+    }
 }
