@@ -14,6 +14,11 @@
             Devuelve la información del usuario autenticado según el token JWT enviado.
             </summary>
         </member>
+        <member name="M:HorsePedigree_2026.Controllers.AuthController.LogoutAsync(System.Threading.CancellationToken)">
+            <summary>
+            Cierra la sesión del usuario autenticado invalidando el token JWT actual.
+            </summary>
+        </member>
         <member name="M:HorsePedigree_2026.Controllers.EquinosController.GetAllAsync(HorsePedigree_2026.DTOs.Equinos.EquinoFiltrosQuery,System.Threading.CancellationToken)">
             <summary>
             Listado de equinos con filtros opcionales por nombre, propietario y estado.

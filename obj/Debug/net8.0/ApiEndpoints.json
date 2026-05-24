@@ -55,6 +55,31 @@
   },
   {
     "ContainingType": "HorsePedigree_2026.Controllers.AuthController",
+    "Method": "LogoutAsync",
+    "RelativePath": "api/v1/auth/logout",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 204
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Mvc.ProblemDetails",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 401
+      }
+    ]
+  },
+  {
+    "ContainingType": "HorsePedigree_2026.Controllers.AuthController",
     "Method": "GetCurrentUserAsync",
     "RelativePath": "api/v1/auth/me",
     "HttpMethod": "GET",
