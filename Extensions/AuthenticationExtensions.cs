@@ -1,5 +1,6 @@
 using System.Text;
 using HorsePedigree_2026.Configuration;
+using HorsePedigree_2026.Constants;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
@@ -40,6 +41,15 @@ public static class AuthenticationExtensions
                     ClockSkew = TimeSpan.FromMinutes(1)
                 };
             });
+
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy(AuthPolicies.Administrador, policy =>
+            {
+                policy.RequireAuthenticatedUser();
+                policy.RequireClaim(AuthClaimTypes.RolId, RolIds.Administrador.ToString());
+            });
+        });
 
         return services;
     }

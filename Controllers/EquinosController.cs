@@ -1,5 +1,7 @@
+using HorsePedigree_2026.Constants;
 using HorsePedigree_2026.DTOs.Equinos;
 using HorsePedigree_2026.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HorsePedigree_2026.Controllers;
@@ -33,8 +35,11 @@ public class EquinosController : ControllerBase
     /// Registra un nuevo caballo.
     /// </summary>
     [HttpPost]
+    [Authorize(Policy = AuthPolicies.Administrador)]
     [ProducesResponseType(typeof(EquinoResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
     public async Task<ActionResult<EquinoResponse>> CreateAsync(
         [FromBody] CreateEquinoRequest request,
         CancellationToken cancellationToken)
@@ -81,8 +86,11 @@ public class EquinosController : ControllerBase
     /// los campos que se desean modificar; los omitidos conservan su valor actual.
     /// </summary>
     [HttpPut("{id:long}")]
+    [Authorize(Policy = AuthPolicies.Administrador)]
     [ProducesResponseType(typeof(EquinoResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<EquinoResponse>> UpdateAsync(
         long id,
@@ -103,8 +111,11 @@ public class EquinosController : ControllerBase
     /// y el caballo deja de aparecer en listados de vivos (clasificación por estado_id).
     /// </summary>
     [HttpPatch("{id:long}/estado")]
+    [Authorize(Policy = AuthPolicies.Administrador)]
     [ProducesResponseType(typeof(EquinoResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<EquinoResponse>> CambiarEstadoAsync(
         long id,
@@ -124,8 +135,11 @@ public class EquinosController : ControllerBase
     /// Elimina un equino. Solo se permite si no tiene campeonatos ni descendientes registrados.
     /// </summary>
     [HttpDelete("{id:long}")]
+    [Authorize(Policy = AuthPolicies.Administrador)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteAsync(long id, CancellationToken cancellationToken)
     {

@@ -56,6 +56,11 @@
             Verificación de disponibilidad de la API y conexión a PostgreSQL (Supabase).
             </summary>
         </member>
+        <member name="M:HorsePedigree_2026.Controllers.UsuariosController.RegisterAsync(HorsePedigree_2026.DTOs.Usuarios.CreateUsuarioRequest,System.Threading.CancellationToken)">
+            <summary>
+            Registra un nuevo usuario. Solo administradores (rol_id = 1).
+            </summary>
+        </member>
         <member name="P:HorsePedigree_2026.DTOs.Equinos.CambiarEstadoEquinoRequest.FechaDeFallecimiento">
             <summary>
             Opcional. Si el estado es fallecido y no se envía, se usa la fecha actual (UTC).
