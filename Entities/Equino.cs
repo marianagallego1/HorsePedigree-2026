@@ -14,6 +14,7 @@ public class Equino
     public string? ChipId { get; set; }
     public bool? Capon { get; set; }
     public bool? Mular { get; set; }
+    public bool EnCompetencia { get; set; }
     public DateOnly FechaDeCreacion { get; set; }
     public DateOnly FechaDeActualizacion { get; set; }
     public long? TipoDePasoId { get; set; }

@@ -19,6 +19,7 @@ public static class EquinoMapper
             ChipId = request.ChipId,
             Capon = request.Capon,
             Mular = request.Mular,
+            EnCompetencia = request.EnCompetencia,
             TipoDePasoId = request.TipoDePasoId,
             PropietarioId = request.PropietarioId,
             PadreId = request.PadreId,
@@ -78,6 +79,11 @@ public static class EquinoMapper
             equino.Mular = request.Mular.Value;
         }
 
+        if (request.EnCompetencia.HasValue)
+        {
+            equino.EnCompetencia = request.EnCompetencia.Value;
+        }
+
         if (request.TipoDePasoId.HasValue)
         {
             equino.TipoDePasoId = request.TipoDePasoId.Value;
@@ -121,6 +127,7 @@ public static class EquinoMapper
             ChipId = equino.ChipId,
             Capon = equino.Capon,
             Mular = equino.Mular,
+            EnCompetencia = equino.EnCompetencia,
             TipoDePasoId = equino.TipoDePasoId,
             TipoDePaso = equino.TipoDePaso is null
                 ? null

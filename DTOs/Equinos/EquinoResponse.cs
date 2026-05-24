@@ -16,6 +16,7 @@ public class EquinoResponse
     public string? ChipId { get; set; }
     public bool? Capon { get; set; }
     public bool? Mular { get; set; }
+    public bool EnCompetencia { get; set; }
     public long? TipoDePasoId { get; set; }
     public CatalogoReferenciaDto? TipoDePaso { get; set; }
     public long? PropietarioId { get; set; }

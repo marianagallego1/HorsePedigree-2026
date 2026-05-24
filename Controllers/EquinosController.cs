@@ -53,7 +53,7 @@ public class EquinosController : ControllerBase
         return CreatedAtRoute(EquinoByIdRoute, new { id = equino.EquinoId }, equino);
     }
 
-    private const string EquinoByIdRoute = nameof(GetByIdAsync);
+    private const string EquinoByIdRoute = "GetEquinoById";
 
     /// <summary>
     /// Consulta la ficha de un caballo por id.
