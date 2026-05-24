@@ -59,4 +59,17 @@ public class AuthController : ControllerBase
         var user = await _authService.GetCurrentUserAsync(usuarioId, cancellationToken);
         return Ok(user);
     }
+
+    /// <summary>
+    /// Cierra la sesión del usuario autenticado invalidando el token JWT actual.
+    /// </summary>
+    [HttpPost("logout")]
+    [Authorize]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<IActionResult> LogoutAsync(CancellationToken cancellationToken)
+    {
+        await _authService.LogoutAsync(User, cancellationToken);
+        return NoContent();
+    }
 }

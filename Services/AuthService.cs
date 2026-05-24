@@ -1,3 +1,5 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using HorsePedigree_2026.DTOs.Auth;
 using HorsePedigree_2026.Entities;
 using HorsePedigree_2026.Exceptions;
@@ -10,11 +12,16 @@ public class AuthService : IAuthService
 {
     private readonly IUsuarioRepository _usuarioRepository;
     private readonly IJwtTokenService _jwtTokenService;
+    private readonly ITokenBlacklistService _tokenBlacklistService;
 
-    public AuthService(IUsuarioRepository usuarioRepository, IJwtTokenService jwtTokenService)
+    public AuthService(
+        IUsuarioRepository usuarioRepository,
+        IJwtTokenService jwtTokenService,
+        ITokenBlacklistService tokenBlacklistService)
     {
         _usuarioRepository = usuarioRepository;
         _jwtTokenService = jwtTokenService;
+        _tokenBlacklistService = tokenBlacklistService;
     }
 
     public async Task<LoginResponse> LoginAsync(LoginRequest request, CancellationToken cancellationToken = default)
@@ -46,6 +53,22 @@ public class AuthService : IAuthService
         }
 
         return MapToAuthenticatedUser(usuario);
+    }
+
+    public Task LogoutAsync(ClaimsPrincipal user, CancellationToken cancellationToken = default)
+    {
+        var jti = user.FindFirstValue(JwtRegisteredClaimNames.Jti);
+        var expClaim = user.FindFirstValue(JwtRegisteredClaimNames.Exp);
+
+        if (string.IsNullOrWhiteSpace(jti) || !long.TryParse(expClaim, out var expUnix))
+        {
+            throw new UnauthorizedException("No se pudo cerrar la sesión con el token actual.");
+        }
+
+        var expiresAtUtc = DateTimeOffset.FromUnixTimeSeconds(expUnix).UtcDateTime;
+        _tokenBlacklistService.Revoke(jti, expiresAtUtc);
+
+        return Task.CompletedTask;
     }
 
     private static AuthenticatedUserResponse MapToAuthenticatedUser(Usuario usuario)

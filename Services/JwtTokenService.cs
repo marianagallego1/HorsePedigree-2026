@@ -28,6 +28,7 @@ public class JwtTokenService : IJwtTokenService
         var expiresAtUtc = DateTime.UtcNow.AddMinutes(_settings.ExpirationMinutes);
         var claims = new List<Claim>
         {
+            new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             new(JwtRegisteredClaimNames.Sub, usuario.UsuarioId.ToString()),
             new(AuthClaimTypes.UsuarioId, usuario.UsuarioId.ToString()),
             new(AuthClaimTypes.Username, usuario.Username),
